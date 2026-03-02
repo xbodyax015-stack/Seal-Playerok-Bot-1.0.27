@@ -1,5 +1,5 @@
 """
-Система рассылки объявлений для Zion Trade Bot.
+Система рассылки объявлений для Seal Playerok Bot.
 Получает объявления с GitHub Gist и отправляет всем пользователям.
 """
 from __future__ import annotations

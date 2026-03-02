@@ -1,4 +1,4 @@
-# 🦭 ZION TRADE BOT
+# 🦭 Seal Playerok Bot
 
 Милый бот-помощник для автоматизации работы на Playerok 🌊
 
@@ -6,9 +6,9 @@
 > 
 > | 📢 **Канал** |            💬 **Разработчик**            |
 > |:------------:|:----------------------------------------:|
-> | [@zion_xz](https://t.me/zion_xz) | [@zion_xz](https://t.me/zion_xz) |
+> | [@SealPlayerok](https://t.me/SealPlayerok) | [@leizov](https://t.me/leizov) |
 > 
-> **Пожалуйста**, если что-то не работает, или есть какие-либо вопросы - пиши мне [@zion_xz](https://t.me/zion_xz?text=Привет%2C%20я%20по%20поводу%20плейрок%20бота%2C%20помоги%20пожалуйста%21)
+> **Пожалуйста**, если что-то не работает, или есть какие-либо вопросы - пиши мне [@leizov](https://t.me/leizov?text=Привет%2C%20я%20по%20поводу%20плейрок%20бота%2C%20помоги%20пожалуйста%21)
 
 ---
 
@@ -182,7 +182,10 @@ wget -qO- https://raw.githubusercontent.com/leizov/Seal-Playerok-Bot/main/instal
 
 ## 📞 Контакты
 
-- **Разработчик:** [@zion_xz](https://t.me/zion_xz)
+- **Разработчик:** [@leizov](https://t.me/leizov)
+- **Канал:** [@SealPlayerok](https://t.me/SealPlayerok)
+- **GitHub:** [Seal-Playerok-Bot](https://github.com/leizov/Seal-Playerok-Bot)
+
 ---
 
 **Использует Playerok API из**  

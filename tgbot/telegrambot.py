@@ -176,7 +176,7 @@ class TelegramBot:
     async def _set_short_description(self):
         """Устанавливает короткое описание бота (отображается в профиле, лимит 120 символов)"""
         try:
-            short_description = "🦭 Помощ: t.me/zion_xz"
+            short_description = "🦭 Канал: t.me/SealPlayerok | Чат: t.me/SealPlayerokChat | Бот: t.me/SealPlayerokBot"
             await self.bot.set_my_short_description(short_description=short_description)
         except:
             pass
@@ -185,7 +185,7 @@ class TelegramBot:
         """Устанавливает полное описание бота с ссылками"""
         try:
             description = textwrap.dedent("""
-🦭 Zion Trade Bot v{VERSION}
+🦭 SealPlayerokBot v{VERSION}
 
 Бот-помощник для автоматизации работы с маркетплейсом Playerok.com
 
@@ -199,7 +199,9 @@ class TelegramBot:
 • И многое другое
 
 🔗 Ссылки:
-• Автор: t.me/zion_xz
+• Канал: t.me/SealPlayerok
+• Бот: t.me/SealPlayerokBot
+• GitHub: github.com/leizov/Seal-Playerok-Bot
 
 🦭 Разработчик: {DEVELOPER}
             """).strip()
@@ -299,9 +301,29 @@ class TelegramBot:
         """
         try:
             config = sett.get("config")
+            me = await self.bot.get_me()
+            
+            # Получаем информацию о системе
+            import platform
+            import socket
+            import datetime
+            
+            hostname = socket.gethostname()
+            ip_address = socket.gethostbyname(hostname)
+            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            
             message = (
-                f"💩 Далбаёбов теперь мониторит Бот!"
-            )            
+                f"🦭 <b>Seal Playerok Bot v{VERSION} активен!</b>\n\n"
+                f"• <b>Бот:</b> @{me.username}\n"
+                f"• <b>Версия:</b> {VERSION}\n"
+                f"• <b>Разработчик:</b> {DEVELOPER}\n"
+                f"• <b>Репозиторий:</b> <a href=\"{REPOSITORY}\">GitHub</a>\n"
+                f"• <b>Время запуска:</b> {current_time}\n"
+                f"• <b>Сервер:</b> {hostname}\n"
+                f"• <b>ОС:</b> {platform.system()} {platform.release()}\n\n"
+                f"🥰 Милый помощник готов к работе!"
+            )
+            
             # Отправляем уведомление всем администраторам
             for admin_id in config["telegram"]["bot"].get("signed_users", []):
                 try:
@@ -311,7 +333,8 @@ class TelegramBot:
                         parse_mode="HTML"
                     )
                 except Exception as e:
-                    logger.error(f"Не удалось отправить уведомление администратору {admin_id}: {e}")                    
+                    logger.error(f"Не удалось отправить уведомление администратору {admin_id}: {e}")
+                    
         except Exception as e:
             logger.error(f"Ошибка при отправке уведомления о запуске: {e}")
 

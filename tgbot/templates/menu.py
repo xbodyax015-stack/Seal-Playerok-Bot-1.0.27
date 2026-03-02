@@ -11,7 +11,7 @@ def menu_text():
     txt = textwrap.dedent(f"""
         🏠 <b>Главное меню</b>
 
-        🦭 <b>Zion Trade Bot</b> v{VERSION}
+        🦭 <b>Seal Playerok Bot</b> v{VERSION}
         <b>Милый бот-помощник для Playerok</b>
         
         <b>Ссылки:</b>
@@ -50,7 +50,7 @@ def menu_kb(page: int = 0):
             [InlineKeyboardButton(text="⌨️ Команды", callback_data=calls.CustomCommandsPagination(page=0).pack())],
             [InlineKeyboardButton(text="👥 Пользователи", callback_data=calls.SettingsNavigation(to="users").pack())],
             [InlineKeyboardButton(text="📋 Логи", callback_data=calls.LogsNavigation(to="main").pack())],
-            [InlineKeyboardButton(text="👨‍💻 Настройки разработчика", callback_data=calls.SettingsNavigation(to="developer").pack())],
+            # [InlineKeyboardButton(text="👨‍💻 Настройки разработчика", callback_data=calls.SettingsNavigation(to="developer").pack())],
         ]
     
     # Навигация между страницами
@@ -67,7 +67,8 @@ def menu_kb(page: int = 0):
     
     # Ссылки
     rows.append([
-        InlineKeyboardButton(text="👨‍💻 Разработчик", url="https://t.me/zion_xz"),
+        InlineKeyboardButton(text="👨‍💻 Разработчик", url="https://t.me/leizov"),
+        InlineKeyboardButton(text="📦 GitHub", url=REPOSITORY)
     ])
     
     kb = InlineKeyboardMarkup(inline_keyboard=rows)
