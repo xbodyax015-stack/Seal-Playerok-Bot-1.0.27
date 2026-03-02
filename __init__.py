@@ -1,15 +1,9 @@
 from colorama import Fore
 
-# Seal Playerok Bot - милым быть круто 🦭
-VERSION = "1.0.27"
-DEVELOPER = "@leizov"
-REPOSITORY = "https://github.com/leizov/Seal-Playerok-Bot"
-SKIP_UPDATES = False
-
-# Ссылки мои типо
-TELEGRAM_CHANNEL = "https://t.me/SealPlayerok"
-TELEGRAM_CHAT = "https://t.me/SealPlayerokChat"
-TELEGRAM_BOT = "https://t.me/SealPlayerokBot"
+# Zion Trade Bot -  🦾
+VERSION = "2.0"
+DEVELOPER = "@zion_xz"
+SKIP_UPDATES = True
 
 # Морская цветовая палитра
 ACCENT_COLOR = Fore.LIGHTCYAN_EX  # Светло-голубой (морская вода)

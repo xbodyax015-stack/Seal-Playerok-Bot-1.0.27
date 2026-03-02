@@ -19,7 +19,6 @@ CONFIG = SettingsFile(
     path=paths.CONFIG_FILE,
     need_restore=True,
     default={
-        "activation_code": "",  # Код активации из бота @SealPlayerokBot
         "playerok": {
             "api": {
                 "token": "",
@@ -30,7 +29,7 @@ CONFIG = SettingsFile(
             },
             "watermark": {
                 "enabled": True,
-                "value": "🦭 𝗦𝗲𝗮𝗹 𝗣𝗹𝗮𝘆𝗲𝗿𝗼𝗸 𝗕𝗼𝘁 🦭"
+                "value": "🦭 Zion Trade Bot 🦭"
             },
             "read_chat": {
                 "enabled": True

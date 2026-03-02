@@ -1,6 +1,6 @@
 @echo off
 chcp 65001 >nul
-title Seal Playerok Bot
+title Zion Trade Bot
 
 cd /d "%~dp0"
 

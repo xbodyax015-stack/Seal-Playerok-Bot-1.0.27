@@ -732,7 +732,7 @@ class PlayerokBot:
                     balance = "?"
                 
                 username = self.account.username if self.account else "Не подключен"
-                set_title(f"Seal Playerok Bot v{VERSION} | {username}: {balance}₽")
+                set_title(f"Zion Trade Bot v{VERSION} | {username}: {balance}₽")
                 
                 if self.stats != get_stats(): 
                     set_stats(self.stats)

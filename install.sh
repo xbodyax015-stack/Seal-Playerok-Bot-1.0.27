@@ -1,6 +1,6 @@
 #!/bin/bash
 # ═══════════════════════════════════════════════════════════════════════════════
-# 🦭 SealPlayerok Bot - Установщик для Ubuntu/Linux
+# 🦭 Zion Trade Bot - Установщик для Ubuntu/Linux
 # ═══════════════════════════════════════════════════════════════════════════════
 # Использование (запускать от root!):
 #   wget https://raw.githubusercontent.com/leizov/Seal-Playerok-Bot/main/install.sh && sudo bash install.sh
@@ -175,19 +175,7 @@ log_step() {
 show_banner() {
     clear
     echo -e "${CYAN}"
-    cat << 'EOF'
-    ╔═══════════════════════════════════════════════════════════╗
-    ║                                                           ║
-    ║    🦭  SealPlayerok Bot - Installer for Ubuntu/Linux 🦭     ║
-    ║                                                           ║
-    ║              Милый бот-помощник для Playerok              ║
-    ║                                                           ║
-    ╚═══════════════════════════════════════════════════════════╝
-EOF
     echo -e "${NC}"
-    echo -e "${CYAN}📢 Канал:${NC}  https://t.me/SealPlayerok"
-    echo -e "${CYAN}💬 Чат:${NC}    https://t.me/SealPlayerokChat"
-    echo -e "${CYAN}📦 GitHub:${NC} https://github.com/${GH_REPO}"
     echo -e ""
 }
 
@@ -652,7 +640,7 @@ create_launch_scripts() {
 #!/bin/bash
 cd "${INSTALL_DIR}"
 source "${VENV_DIR}/bin/activate"
-echo "🦭 Запуск SealPlayerok Bot..."
+echo "🦭 Запуск Zion Trade Bot..."
 LANG=en_US.UTF-8 python bot.py
 SCRIPT
     chmod +x "${INSTALL_DIR}/start.sh"
@@ -660,7 +648,7 @@ SCRIPT
     # stop.sh
     cat > "${INSTALL_DIR}/stop.sh" << 'SCRIPT'
 #!/bin/bash
-echo "🛑 Остановка SealPlayerok Bot..."
+echo "🛑 Остановка Zion Trade Bot..."
 pkill -f "python.*bot.py" 2>/dev/null && echo "✅ Бот остановлен" || echo "⚠️ Бот не запущен"
 SCRIPT
     chmod +x "${INSTALL_DIR}/stop.sh"
@@ -679,7 +667,7 @@ SCRIPT
     cat > "${INSTALL_DIR}/update.sh" << SCRIPT
 #!/bin/bash
 cd "${INSTALL_DIR}"
-echo "🔄 Обновление SealPlayerok Bot..."
+echo "🔄 Обновление Zion Trade Bot..."
 ./stop.sh 2>/dev/null
 git pull origin main 2>/dev/null || git pull origin master
 source "${VENV_DIR}/bin/activate"
@@ -709,7 +697,7 @@ create_systemd_service() {
     
     cat > "$SERVICE_FILE" << EOF
 [Unit]
-Description=SealPlayerok Bot - Playerok Helper
+Description=Zion Trade Bot - Playerok Helper
 After=network.target network-online.target
 Wants=network-online.target
 
@@ -851,7 +839,7 @@ create_aliases() {
     
     cat > "$COMMANDS_FILE" << EOF
 #!/bin/bash
-# 🦭 SealPlayerok Bot - Команды управления
+# 🦭 Zion Trade Bot - Команды управления
 
 SERVICE="${SERVICE_NAME}"
 INSTALL_DIR="${INSTALL_DIR}"
@@ -964,7 +952,7 @@ case "\$1" in
         echo "   Запусти: ${COMMAND_NAME} start"
         ;;
     *)
-        echo "🦭 SealPlayerok Bot - Команды:"
+        echo "🦭 Zion Trade Bot - Команды:"
         echo ""
         echo "  ${COMMAND_NAME} start     - 🚀 Запустить бота"
         echo "  ${COMMAND_NAME} stop      - 🛑 Остановить бота"
@@ -1007,7 +995,7 @@ create_global_seal_command() {
     
     cat > "$SEAL_GLOBAL" << 'SEALEOF'
 #!/bin/bash
-# 🦭 SealPlayerok Bot - Глобальная команда управления
+# 🦭 Zion Trade Bot - Глобальная команда управления
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -1019,7 +1007,7 @@ INSTALL_URL="https://raw.githubusercontent.com/leizov/Seal-Playerok-Bot/main/ins
 
 case "$1" in
     install|new)
-        echo -e "${CYAN}🦭 Запуск установщика SealPlayerok Bot...${NC}"
+        echo -e "${CYAN}🦭 Запуск установщика Zion Trade Bot...${NC}"
         echo ""
         bash <(curl -sL "$INSTALL_URL")
         ;;
@@ -1030,7 +1018,6 @@ case "$1" in
         echo -e "  ${GREEN}seal <имя> setup${NC}  — настройка конкретного бота"
         echo -e "  ${GREEN}seal-<имя> setup${NC}  — альтернативный формат"
         echo ""
-        echo -e "Пример: ${GREEN}seal sealbot setup${NC}"
         echo ""
         echo -e "${CYAN}Установленные боты:${NC}"
         for cmd in /usr/local/bin/seal-*; do
@@ -1039,7 +1026,7 @@ case "$1" in
         echo ""
         ;;
     list|ls)
-        echo -e "${CYAN}🦭 Установленные боты SealPlayerok:${NC}"
+        echo -e "${CYAN}🦭 Установленные Zion Trade Bot:${NC}"
         echo ""
         found=0
         for cmd in /usr/local/bin/seal-*; do
@@ -1062,7 +1049,7 @@ case "$1" in
         echo ""
         ;;
     help|--help|-h|"")
-        echo -e "${CYAN}🦭 SealPlayerok Bot - Глобальные команды${NC}"
+        echo -e "${CYAN}🦭 Zion Trade Bot - Глобальные команды${NC}"
         echo ""
         echo -e "  ${GREEN}seal install${NC}      - 🚀 Установить нового бота"
         echo -e "  ${GREEN}seal list${NC}         - 📋 Список установленных ботов"
@@ -1103,7 +1090,7 @@ show_final_message() {
     echo -e "\n"
     echo -e "${GREEN}╔═══════════════════════════════════════════════════════════╗${NC}"
     echo -e "${GREEN}║                                                           ║${NC}"
-    echo -e "${GREEN}║      🎉 SealPlayerok Bot успешно установлен! 🎉          ║${NC}"
+    echo -e "${GREEN}║      🎉 Zion Trade Bot успешно установлен! 🎉          ║${NC}"
     echo -e "${GREEN}║                                                           ║${NC}"
     echo -e "${GREEN}╚═══════════════════════════════════════════════════════════╝${NC}"
     echo -e ""
@@ -1154,11 +1141,7 @@ show_final_message() {
     echo -e "${YELLOW}🦭 ССЫЛКИ:${NC}"
     echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e ""
-    echo -e "  ${CYAN}📢 Канал:${NC}   https://t.me/SealPlayerok"
-    echo -e "  ${CYAN}💬 Чат:${NC}     https://t.me/SealPlayerokChat"
-    echo -e "  ${CYAN}🤖 Бот:${NC}     https://t.me/SealPlayerokBot"
-    echo -e "  ${CYAN}📦 GitHub:${NC}  https://github.com/${GH_REPO}"
-    echo -e "  ${CYAN}👨‍💻 Автор:${NC}   @leizov"
+    echo -e "  ${CYAN}👨‍💻 Автор:${NC}   @zion_xz"
     echo -e ""
     echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e "${YELLOW}❓ ЧТО ДЕЛАТЬ ДАЛЬШЕ:${NC}"

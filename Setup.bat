@@ -5,7 +5,7 @@ setlocal EnableDelayedExpansion
 echo.
 echo   🦭✨ ═══════════════════════════════════════════════════════════ ✨🦭
 echo   ║                                                                   ║
-echo   ║         🐚  SEAL PLAYEROK BOT - УСТАНОВЩИК  🐚                     ║
+echo   ║         🐚  ZION TARADE BOT - УСТАНОВЩИК  🐚                     ║
 echo   ║                                                                   ║
 echo   ║    Привет! Сейчас я помогу тебе всё настроить                     ║
 echo   ║                                                                   ║
@@ -59,7 +59,7 @@ if %ERRORLEVEL% equ 0 (
 :: Python не найден или неподходящая версия
 echo.
 echo   ❌ Python 3.12 не найден!
-echo   💡 SealPlayerok Bot требует ТОЛЬКО Python 3.12
+echo   💡 ZionTradeBot требует ТОЛЬКО Python 3.12
 echo.
 echo   📥 Попытка автоматической установки Python 3.12...
 echo.
@@ -185,11 +185,7 @@ echo   ║                                                                   ║
 echo   🦭✨ ═══════════════════════════════════════════════════════════ ✨🦭
 echo.
 echo   ┌────────────────────────────────────────────────────────────────┐
-echo   │  📢 Канал:  @SealPlayerok       https://t.me/SealPlayerok      │
-echo   │  💬 Чат:    @SealPlayerokChat   https://t.me/SealPlayerokChat  │
-echo   │  🤖 Бот:    @SealPlayerokBot    https://t.me/SealPlayerokBot   │
-echo   │  📦 GitHub: github.com/leizov/Seal-Playerok-Bot                │
-echo   │  👨‍💻 Автор:  @leizov                                           │
+echo   │  💬 Поддержка:  @zion_xz                                           │
 echo   └────────────────────────────────────────────────────────────────┘
 echo.
 pause
