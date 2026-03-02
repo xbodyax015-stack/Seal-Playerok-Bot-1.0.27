@@ -4,7 +4,7 @@ from colorama import Fore
 VERSION = "1.0.27"
 DEVELOPER = "@leizov"
 REPOSITORY = "https://github.com/leizov/Seal-Playerok-Bot"
-SKIP_UPDATES = False
+SKIP_UPDATES = True
 
 # Ссылки мои типо
 TELEGRAM_CHANNEL = "https://t.me/SealPlayerok"
