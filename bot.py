@@ -95,6 +95,94 @@ import paths
 paths.ensure_dirs()
 
 # ═══════════════════════════════════════════════════════════════════════
+# ПРОВЕРКА КОДА АКТИВАЦИИ
+# ═══════════════════════════════════════════════════════════════════════
+# Код: 8 символов, 2-й = R или B, последний = 7 или 4
+# Получить код: @SealPlayerokBot команда /code (нужна подписка на канал)
+
+import json
+import string as str_module
+
+def validate_activation_code(code: str) -> bool:
+    """Проверяет код активации по паттерну"""
+    if not code or len(code) != 8:
+        return False
+    code = code.upper()
+    if code[1] not in ['R', 'B']:
+        return False
+    if code[7] not in ['7', '4']:
+        return False
+    for c in code:
+        if c not in str_module.ascii_uppercase + str_module.digits:
+            return False
+    return True
+
+
+def check_activation_code():
+    """Проверяет код активации при первом запуске"""
+    config_path = paths.CONFIG_FILE
+    settings_dir = paths.BOT_SETTINGS_DIR
+    
+    # Проверяем существует ли конфиг
+    if not os.path.exists(config_path):
+        os.makedirs(settings_dir, exist_ok=True)
+        # Конфиг создастся позже, но код нужен сейчас
+        saved_code = ""
+    else:
+        try:
+            with open(config_path, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+            saved_code = config.get("activation_code", "")
+        except:
+            saved_code = ""
+    
+    # Если код уже есть и валиден — пропускаем
+    if validate_activation_code(saved_code):
+        return True
+    
+    # Запрашиваем код
+    print("\n" + "=" * 60)
+    print("🦭 АКТИВАЦИЯ SEAL PLAYEROK BOT")
+    print("=" * 60)
+    print("\nДля использования бота нужен код активации.")
+    print("\n📋 Как получить код:")
+    print("   1. Подпишись на канал @SealPlayerok")
+    print("   2. Напиши боту @SealPlayerokBot")
+    print("   3. Введи команду /code")
+    print("   4. Скопируй полученный код")
+    print("\n" + "=" * 60)
+    
+    while True:
+        code = input("\n🔑 Введи код активации: ").strip().upper()
+        
+        if validate_activation_code(code):
+            # Сохраняем код в конфиг
+            if os.path.exists(config_path):
+                try:
+                    with open(config_path, 'r', encoding='utf-8') as f:
+                        config = json.load(f)
+                except:
+                    config = {}
+            else:
+                config = {}
+            
+            config["activation_code"] = code
+            
+            with open(config_path, 'w', encoding='utf-8') as f:
+                json.dump(config, f, ensure_ascii=False, indent=4)
+            
+            print("\n✅ Код принят! Бот активирован.")
+            print("🐚 Добро пожаловать в SealPlayerok Bot!\n")
+            return True
+        else:
+            print("❌ Неверный код! Попробуй ещё раз.")
+            print("   Код должен быть 8 символов.")
+
+
+# Проверяем код при запуске
+check_activation_code()
+
+# ═══════════════════════════════════════════════════════════════════════
 
 import asyncio
 import re
@@ -125,6 +213,7 @@ from core.plugins import (
 )
 from core.handlers import call_bot_event
 from core.proxy_utils import normalize_proxy, validate_proxy
+from updater import check_for_updates
 
 
 logger = getLogger("seal")
@@ -210,7 +299,8 @@ def check_and_configure_config():
     # Проверяем, нужна ли интерактивная настройка
     needs_config = (
         not config["playerok"]["api"]["token"] or
-        not config["telegram"]["api"]["token"]
+        not config["telegram"]["api"]["token"] or
+        not config["telegram"]["bot"]["password"]
     )
     
     # Если нет TTY (запуск через systemd) и конфиг не настроен - выходим с ошибкой
@@ -228,6 +318,8 @@ def check_and_configure_config():
             print("    - Токен Playerok")
         if not config["telegram"]["api"]["token"]:
             print("    - Токен Telegram бота")
+        if not config["telegram"]["bot"]["password"]:
+            print("    - Пароль для Telegram бота")
         print("")
         print("=" * 60)
         sys.exit(1)
@@ -499,8 +591,17 @@ def check_and_configure_config():
         else:
             print(f"\n{Fore.LIGHTRED_EX}Похоже, что вы ввели некорректный токен. Убедитесь, что он соответствует формату и попробуйте ещё раз.")
 
-    # Локальная парольная авторизация отключена.
-    
+    while not config["telegram"]["bot"]["password"]:
+        print(f"\n{Fore.WHITE}Придумайте и введите {Fore.YELLOW}пароль для вашего Telegram бота{Fore.WHITE}. Бот будет запрашивать этот пароль при каждой новой попытке взаимодействия чужого пользователя с вашим Telegram ботом."
+              f"\n  {Fore.WHITE}· Пароль должен быть сложным, длиной не менее 6 и не более 64 символов.")
+        password = input(f"  {Fore.WHITE}> {Fore.LIGHTWHITE_EX}").strip()
+        if is_password_valid(password):
+            config["telegram"]["bot"]["password"] = password
+            sett.set("config", config)
+            print(f"\n{Fore.GREEN}Пароль успешно сохранён в конфиг.")
+        else:
+            print(f"\n{Fore.LIGHTRED_EX}Ваш пароль не подходит. Убедитесь, что он соответствует формату и не является лёгким и попробуйте ещё раз.")
+
     if not is_pl_account_working():
         print(f"\n{Fore.LIGHTRED_EX}Не удалось подключиться к вашему Playerok аккаунту.")
         print(f"{Fore.YELLOW}Бот продолжит работу. Измените настройки через Telegram бота если нужно.")
@@ -561,6 +662,7 @@ if __name__ == "__main__":
    │  {Fore.LIGHTWHITE_EX}👨‍💻 Автор:{Fore.WHITE}  @leizov                                                         {Fore.CYAN}
    └──────────────────────────────────────────────────────────────────────────────{Fore.RESET}
 """)
+        check_for_updates()
 
         from datetime import datetime as datetime_time
         try:

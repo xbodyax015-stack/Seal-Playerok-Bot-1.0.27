@@ -13,7 +13,7 @@ def get_playerok_bot():
 
 async def do_auth(message: Message, state: FSMContext) -> Message | None:
     """
-    Упрощённая авторизация: автоматически добавляет пользователя в список подписанных.
+    Начинает процесс авторизации в боте (запрашивает пароль, указанный в конфиге).
 
     :param message: Исходное сообщение.
     :type message: `aiogram.types.Message`
@@ -21,21 +21,13 @@ async def do_auth(message: Message, state: FSMContext) -> Message | None:
     :param state: Исходное состояние.
     :type state: `aiogram.fsm.context.FSMContext`
     """
-    from settings import Settings as sett
-
-    config = sett.get("config")
-    user_id = message.from_user.id if message.from_user else None
-    if user_id is not None and user_id not in config["telegram"]["bot"].get("signed_users", []):
-        config["telegram"]["bot"].setdefault("signed_users", []).append(user_id)
-        sett.set("config", config)
-
-    if state:
-        await state.clear()
-
+    from . import states
+    
+    await state.set_state(states.SystemStates.waiting_for_password)
     return await throw_float_message(
         state=state,
         message=message,
-        text=templ.success_text('✅ Доступ разрешён.'),
+        text=templ.sign_text('🔑 Введите ключ-пароль, указанный вами в конфиге бота ↓'),
         reply_markup=templ.destroy_kb()
     )
 

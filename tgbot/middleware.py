@@ -85,7 +85,7 @@ class AuthMiddleware(BaseMiddleware):
             return await handler(event, data)
         
         # Проверяем, включена ли блокировка входа по паролю
-        password_auth_enabled = config["telegram"]["bot"].get("password_auth_enabled", False)
+        password_auth_enabled = config["telegram"]["bot"].get("password_auth_enabled", True)
         
         # Если пользователь не авторизован и блокировка включена
         if user_id not in config["telegram"]["bot"]["signed_users"] and password_auth_enabled:

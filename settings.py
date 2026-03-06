@@ -19,6 +19,7 @@ CONFIG = SettingsFile(
     path=paths.CONFIG_FILE,
     need_restore=True,
     default={
+        "activation_code": "",  # Код активации из бота @SealPlayerokBot
         "playerok": {
             "api": {
                 "token": "",
@@ -80,7 +81,7 @@ CONFIG = SettingsFile(
             },
             "bot": {
                 "password": "",
-                "password_auth_enabled": False,
+                "password_auth_enabled": True,
                 "signed_users": []
             }
         }
